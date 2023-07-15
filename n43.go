@@ -315,6 +315,7 @@ header:
 		} else if lineType == MOVEMENT_EXTRA_INFO_LINE {
 			// Process extra info
 
+		extraInfoLine:
 			line := p.getLine()
 
 			if p.parseOption.filterLineInRe != nil {
@@ -353,6 +354,24 @@ header:
 			if p.parseOption.filterLineInRe == nil && p.parseOption.filterLineOutRe == nil {
 				p.parseMovementLineExtraInfo()
 			}
+
+			peekLine, err := p.peek()
+			if err != nil {
+				return p.n43, errors.New("malformed document")
+			}
+			peekLineType, err := getLineType(peekLine[:2])
+			if err != nil {
+				return p.n43, err
+			}
+
+			if peekLineType == MOVEMENT_EXTRA_INFO_LINE {
+				_, err = p.next()
+				if err != nil {
+					return p.n43, err
+				}
+				goto extraInfoLine
+			}
+
 		}
 
 		lineType, err = p.next()

@@ -18,6 +18,7 @@ func Test_n43(t *testing.T) {
 2301CREDIT CARD 1234567890123456 1234 .SUPERMARKET WHATEVER NAME INC.
 22    22222002032002031240810000000000010000000000000000000000001234567890123456
 2301CREDIT CARD 1234567890123456 1234 .CAR GARAGE REPAIR.
+2302CREDIT CARD 1234567890123456 1234 .CAR GARAGE REPAIR EXTRA.
 3311112222333344441200015000000000661840000100000000050000200000000230159978
 88999999999999999999000034`
 
@@ -105,6 +106,10 @@ func Test_n43(t *testing.T) {
 	ti, _ = time.Parse("2006-01-02 03:04:05 MST", "2020-02-04 00:00:00 UTC")
 	if out.Accounts[0].Movements[0].ValueDate != ti {
 		t.Errorf("Expected EndDate to be 2020-02-04 00:00:00 UTC, but %s found", out.Accounts[0].Header.EndDate)
+	}
+
+	if len(out.Accounts[0].Movements[len(out.Accounts[0].Movements)-1].ExtraInformation) != 2 {
+		t.Errorf("Expected 2 extra information line in movement %d, but %d found", len(out.Accounts[0].Movements), len(out.Accounts[0].Movements[len(out.Accounts[0].Movements)-1].ExtraInformation))
 	}
 
 	if out.Accounts[0].Footer.BankCode != "1111" {
