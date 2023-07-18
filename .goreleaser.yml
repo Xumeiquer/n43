@@ -1,0 +1,42 @@
+project_name: n43
+dist: ./dist
+
+release:
+  # Repo in which the release will be created.
+  # Default is extracted from the origin remote URL or empty if its private hosted.
+  github:
+    owner: Xumeiquer
+    name: n43
+
+builds:
+  - id: n43
+    main: ./cmd/
+    binary: n43
+    goos: 
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - "386"
+      - amd64
+
+changelog:
+  use: github
+  sort: asc
+
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: "Bug fixes"
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: Performance Improvements
+      regexp: '^.*?perf(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: Code Refactoring
+      regexp: '^.*?refactor(\([[:word:]]+\))??!?:.+$'
+      order: 3
+    - title: Chore
+      regexp: '^.*?chore(\([[:word:]]+\))??!?:.+$'
+      order: 999
