@@ -10,7 +10,9 @@ permissions:
   contents: write
   # packages: write
   # issues: write
-
+env:
+  GOPATH: ${{ github.workspace }}
+  
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
