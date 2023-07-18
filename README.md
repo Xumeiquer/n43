@@ -15,7 +15,7 @@ _Call-to-Action buttons_
 
 ## Documentation
 
-The N43 library parser is reqlly simple, just load the lines from the N43 file into a new parser and
+The N43 library parser is really simple, just load the lines from the N43 file into a new parser and
 parse it. After that, you'll have a nice structure with all the needed data accessible.
 
 ```golang
