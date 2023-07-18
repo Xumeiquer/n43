@@ -150,7 +150,7 @@ func generateTeplate(header string, line string, footer string, sep string) stri
 func showVerion() {
 	fmt.Println("Norma43 parser.")
 	fmt.Printf("Version: %s\n", version)
-	fmt.Printf("Commit: %s\n", commit)
+	fmt.Printf("Build: %s.%s\n", version, commit)
 	fmt.Printf("Build on: %s\n", date)
 	fmt.Printf("Build by: %s\n", builtBy)
 }
