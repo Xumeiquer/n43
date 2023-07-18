@@ -29,8 +29,8 @@ builds:
       - all=-trimpath={{.Env.GOPATH}}
     gcflags:
       - all=-trimpath={{.Env.GOPATH}}
-    hooks:
-      pre: export GOPATH=$(go env GOPATH)
+    env:
+      - GOPATH=$(go env GOPATH)
 
 changelog:
   use: github
