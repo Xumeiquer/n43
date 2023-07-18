@@ -19,6 +19,12 @@ builds:
     goarch:
       - "386"
       - amd64
+    ldflags:
+      - -s -w -X main.build={{.Version}} main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
 
 changelog:
   use: github

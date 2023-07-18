@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -23,6 +24,12 @@ var (
 	footerTpl       string         = ".BankCode,.BranchCode,.AccountNumber,.DebitEntries,.DebitAmount,.CreditEntries,.CreditAmount,.FinalBalance,.Currency"
 	sepTpl          string         = " "
 	fin             string         = ""
+	versionFlag     bool           = false
+
+	version string = ""
+	commit  string = ""
+	date    string = ""
+	builtBy string = ""
 )
 
 func init() {
@@ -37,11 +44,17 @@ func init() {
 	flag.StringVar(&lineTpl, "lineTpl", lineTpl, "Output template for the movement line")
 	flag.StringVar(&sepTpl, "sepTpl", sepTpl, "Sparator character")
 	flag.StringVar(&fin, "in", fin, "Read from file.")
+	flag.BoolVar(&versionFlag, "version", versionFlag, "Show version")
 
 	flag.Parse()
 }
 
 func main() {
+	if versionFlag {
+		showVerion()
+		return
+	}
+
 	ops := &n43.ParserOptions{
 		Trim:           trim,
 		TimeFormat:     timeFormat,
@@ -132,4 +145,12 @@ func generateTeplate(header string, line string, footer string, sep string) stri
 
 	tpl += "{{ end }}{{ end }}\n"
 	return tpl
+}
+
+func showVerion() {
+	fmt.Println("Norma43 parser.")
+	fmt.Printf("Version: %s\n", version)
+	fmt.Printf("Commit: %s\n", commit)
+	fmt.Printf("Build on: %s\n", date)
+	fmt.Printf("Build by: %s\n", builtBy)
 }
