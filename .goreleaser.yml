@@ -10,7 +10,7 @@ release:
 
 builds:
   - id: n43
-    main: ./cmd/
+    main: ./cmd/main.go
     binary: n43
     goos: 
       - darwin
