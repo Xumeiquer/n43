@@ -29,7 +29,6 @@ var (
 	version string = ""
 	commit  string = ""
 	date    string = ""
-	builtBy string = ""
 )
 
 func init() {
@@ -148,9 +147,8 @@ func generateTeplate(header string, line string, footer string, sep string) stri
 }
 
 func showVerion() {
-	fmt.Println("Norma43 parser.")
+	fmt.Println("n43 -- Norma43 parser")
 	fmt.Printf("Version: %s\n", version)
-	fmt.Printf("Build: %s.%s\n", version, commit)
+	fmt.Printf("Build: %s_%s\n", version, commit)
 	fmt.Printf("Build on: %s\n", date)
-	fmt.Printf("Build by: %s\n", builtBy)
 }
